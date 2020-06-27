@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#-------------------------------------------------------
+#	FileName	: keyhelp
+#	Author		：hpy
+#	Date		：2020年06月17日
+#	Description	：vim输入自定义快捷键帮助
+#-------------------------------------------------------
+clear
+lang=$1
+file=/home/yhp/.vim/mconf/key.help
+begin=$(grep -n $lang $file | head -n 1| cut -d':' -f1)
+end=$(grep -n $lang $file | tail -n 1| cut -d':' -f1) 
+#echo $begin
+#echo $end
+
+begin=$[$begin+1]
+end=$[$end-$begin]
+begin="+$begin"
+end="+$end"
+
+echo "--- vim插入编辑$1的快捷键 ---"
+cat $file | tail -n $begin | head -n $end
+sleep 5
+
+exit 0
